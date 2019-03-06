@@ -6,9 +6,38 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="index.js"></script>
     <link href="index.css" rel="stylesheet" />
+    <link href="modal.css" rel="stylesheet" />
     <title>Varsitarian Scoreboard</title>
 </head>
 <body>
+    <script type="text/x-template" id="modal-template">
+        <transition name="modal">
+        <div class="modal-mask">
+            <div class="modal-wrapper">
+            <div class="modal-container">
+    
+                <div class="modal-header">
+                <slot name="header">
+                    
+                </slot>
+                </div>
+    
+                <div class="modal-body">
+                <slot name="body">
+                    {{ time }}
+                </slot>
+                </div>
+    
+                <div class="modal-footer">
+                <slot name="footer">
+                </slot>
+                </div>
+            </div>
+            </div>
+        </div>
+        </transition>
+    </script>
+    
     <div id="app" class="main-container">
         <img src="../assets/varsilogo.png" class="varsitarian-logo" />
         <div v-bind:class="getClass('teams')">
@@ -25,6 +54,8 @@
                 </div>
             </div>
         </div>
+        <!-- <button id="show-modal" v-on:click="showModal = true">Show Modal</button> -->
+        <modal v-if="showModal" @close="showModal = false" :time="time" />
     </div>
 </body>
 </html>

@@ -1,10 +1,17 @@
 const { ipcRenderer } = require('electron');
 
 window.onload = () => {
+    Vue.component('modal', {
+        props: ['time'],
+        template: '#modal-template'
+    })
+    
     const app = new Vue({
         el: '#app',
         data: {
             message: 'Hello Vue!',
+            showModal: false,
+            time: '00:00',
             teams: [
                 {
                     image: '../assets/angkas.png',
@@ -90,6 +97,45 @@ window.onload = () => {
                     
                     return b.score - a.score
                 })
+            },
+
+            timer: function(minutes = 0, seconds = 0) {
+                let data = this.formatTime(minutes, seconds);
+
+                minutes = data.minutes;
+                seconds = data.seconds;
+
+                var timer = setInterval(function() {
+                    if(minutes != 0 && seconds < 0) {
+                        minutes -= 1; seconds = 59;
+                    }
+
+                    app.time = app.twoDigitFormat(minutes) + ':' + app.twoDigitFormat(seconds)
+                    seconds -= 1;
+
+                    if(minutes == 0 && seconds < 0)
+                        clearInterval(timer)
+
+                }, 1000)
+            },
+
+            formatTime: function(minutes = 0, seconds = 0) {
+                if(seconds >= 60) {
+                    let addMinutes = seconds / 60
+                    minutes += addMinutes
+                    seconds = seconds % 60
+                }
+
+                minutes = Math.floor(minutes)
+
+                return {
+                    minutes,
+                    seconds
+                }
+            },
+
+            twoDigitFormat: function(n = 0) {
+                return n > 9 ? "" + n: "0" + n;
             }
         },
         created: function () {
