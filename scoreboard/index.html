@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="index.js"></script>
+    <link href="index.css" rel="stylesheet" />
+    <title>Varsitarian Scoreboard</title>
+</head>
+<body>
+    <div id="app" class="main-container">
+        <img src="../assets/varsilogo.png" class="varsitarian-logo" />
+        <div v-bind:class="getClass('teams')">
+            <div v-bind:class="getClass('team')" v-for="team in teams">
+                <div class="score-container">
+                    <img v-bind:src="team.image" class="team-image" alt="varsitarian-logo">
+                </div>
+                <p v-bind:class="getClass('team-name')">{{ (teams.length > 5) ? team.shortcut : team.name }}</p>
+                <div class="score-container">
+                    <p class="button-controls team-name">{{ team.score }}</p>
+                </div>
+                <div class="score-container">
+                    <p class="button-controls team-name">{{ team.total }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

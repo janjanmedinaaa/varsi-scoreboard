@@ -1,0 +1,116 @@
+body {
+    display: flex;
+    background-image: url('../assets/bg2.jpg')
+}
+
+.main-container {
+    flex: 1;
+    width: 100%;
+    /* height: 100%; */
+    /* background-color: aquamarine; */
+    display: flex;
+    flex-direction: column;
+}
+
+.top-button-container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    /* justify-content: flex-end; */
+}
+
+.top-button-container > div{
+    background-color: tan;
+    opacity: .9;
+}
+
+.top-button-text {
+    font-size: 13px;
+}
+
+.top-button-container button {
+    margin: 5px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: none;
+    border-style: none;
+}
+
+.main-button-container {
+    flex: 1;
+    /* height: 100%; */
+    /* background-color: goldenrod; */
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* background-color: sandybrown; */
+    align-items: center;
+}
+
+.bottom-button-container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    background-color: antiquewhite;
+}
+
+.bottom-button-container div {
+    flex: 1;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.team-controls {
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    width: 300px;
+    /* background-color: darkcyan; */
+    margin: 10px;
+    border-radius: 10px;
+    /* flex-direction: column; */
+}
+
+.college-name-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    margin-bottom: 0px;
+}
+
+.team-control-buttons-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-control-buttons {
+    /* flex: 1; */
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+.team-controls-add {
+    background-color: springgreen;
+    margin-right: 5px;
+}
+
+.team-controls-minus {
+    background-color: crimson;
+    margin-left: 5px;
+}
+
+.text-style {
+    font-size: 14px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

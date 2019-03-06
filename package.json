@@ -1,0 +1,20 @@
+{
+  "name": "varsiscoreboard",
+  "version": "1.0.0",
+  "description": "Varsitarian Pasiklaban Scoreboard",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "keywords": [
+    "Scoreboard",
+    "Vue.js",
+    "Electron"
+  ],
+  "author": "Janjan Medina",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.0.5"
+  }
+}

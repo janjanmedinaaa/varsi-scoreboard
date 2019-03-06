@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="index.js"></script>
+    <link href="index.css" rel="stylesheet" />
+    <title>Varsitarian Controller</title>
+</head>
+<body>
+    <div id="app" class="main-container">
+        <div class="top-button-container">
+            <button class="top-button-text">Back to the Main Screen</button>
+            <button class="top-button-text" v-on:click="proceedFinals()">Proceed to Finals</button>
+            <div>
+                <button v-on:click="changeIncrement(1, 5) " v-bind:style="levelSelected(1)">LEVEL 1</button>
+                <button v-on:click="changeIncrement(2, 10)" v-bind:style="levelSelected(2)">LEVEL 2</button>
+                <button v-on:click="changeIncrement(3, 15)" v-bind:style="levelSelected(3)">LEVEL 3</button>
+                <button v-on:click="changeIncrement(4, 1)" v-bind:style="levelSelected(4)">SUDDEN DEATH</button>
+            </div>
+        </div>
+        <div class="main-button-container">
+            <div class="team-controls" v-for="(team, index) in teams">
+                <div class="college-name-container">
+                    <p class="text-style">{{ team.name }}</p>
+                </div>
+                <div class="team-control-buttons-container">
+                    <button v-on:click="addScore(index)" class="team-control-buttons team-controls-add">  
+                        <p class="text-style">+</p>
+                    </button>
+                    <button v-on:click="minusScore(index)" class="team-control-buttons team-controls-minus">
+                        <p class="text-style">-</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-button-container">
+            <div class="">
+                <label><input type="radio" name="order" value="alphabetical" v-model="orderModel">&nbsp;&nbsp;Alphabetical Order</label>
+                <label><input type="radio" name="order" value="ranking" v-model="orderModel">&nbsp;&nbsp;Ranking Order</label>
+            </div>
+            <div class="">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
