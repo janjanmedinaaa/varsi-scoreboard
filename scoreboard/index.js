@@ -12,6 +12,7 @@ window.onload = () => {
             message: 'Hello Vue!',
             showModal: false,
             time: '00:00',
+            interval: null,
             teams: [
                 {
                     image: '../assets/angkas.png',
@@ -105,7 +106,7 @@ window.onload = () => {
                 minutes = data.minutes;
                 seconds = data.seconds;
 
-                var timer = setInterval(function() {
+                app.interval = setInterval(function() {
                     if(minutes != 0 && seconds < 0) {
                         minutes -= 1; seconds = 59;
                     }
@@ -114,12 +115,15 @@ window.onload = () => {
                     seconds -= 1;
 
                     if(minutes == 0 && seconds < 0)
-                        clearInterval(timer)
+                        clearInterval(app.interval)
 
                 }, 1000)
             },
 
             formatTime: function(minutes = 0, seconds = 0) {
+                minutes = parseInt(minutes);
+                seconds = parseInt(seconds);
+
                 if(seconds >= 60) {
                     let addMinutes = seconds / 60
                     minutes += addMinutes
@@ -167,6 +171,25 @@ window.onload = () => {
                     case 'finals': 
                         let sorted = this.sortTeams(this.teams, arg.order)
                         this.teams = sorted.slice(0,5);
+                        break;
+                    case 'timer-start':
+                        if(!app.showModal) {
+                            app.showModal = true;
+                            let fixTime = app.formatTime(arg.time.minutes, arg.time.seconds);
+
+                            app.time = app.twoDigitFormat(fixTime.minutes) + ':' + app.twoDigitFormat(fixTime.seconds);
+                        } else {
+                            app.timer(arg.time.minutes, arg.time.seconds)
+                        }
+
+                        break;
+                    case 'timer-reset': 
+                        // if(app.showModal) {
+                            clearInterval(app.interval);
+                            app.interval = null;
+                            app.showModal = false;
+                        // }
+
                         break;
                     default:
                         console.log('Message from controller (unknown):', arg)

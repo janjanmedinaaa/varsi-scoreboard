@@ -8,7 +8,9 @@ window.onload = () => {
             teams: [],
             level: 1,
             increment: 5,
-            orderModel: 'alphabetical'
+            orderModel: 'alphabetical',
+            minutes: 0,
+            seconds: 0,
         },
         methods: {
             levelSelected: function(level) {
@@ -59,6 +61,34 @@ window.onload = () => {
                 }
 
                 ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
+            },
+
+            startTimer: function() {
+                console.log('Start Timer');
+
+                let data = {
+                    name: 'timer-start',
+                    time: {
+                        minutes: this.minutes,
+                        seconds: this.seconds
+                    }
+                }
+
+                ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
+            },
+
+            stopTimer: function() {
+                console.log('Reset Timer');
+
+                let data = {
+                    name: 'timer-reset',
+                    time: {
+                        minutes: this.minutes,
+                        seconds: this.seconds
+                    }
+                }
+
+                ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
             }
         },
         created: function() {
@@ -81,6 +111,14 @@ window.onload = () => {
                 }
 
                 ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
+            },
+
+            minutes: function(val, oldVal) { 
+                app.minutes = (val != "") ? val : 0
+            },
+
+            seconds: function(val, oldVal) {
+                app.seconds = (val != "") ? val : 0
             }
         }
     })

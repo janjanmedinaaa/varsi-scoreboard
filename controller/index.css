@@ -50,17 +50,16 @@ body {
 }
 
 .bottom-button-container {
-    padding: 20px;
     display: flex;
     justify-content: space-around;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
 }
 
 .bottom-button-container div {
     flex: 1;
-    padding: 5px;
+    padding: 15px;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
 }
 
 .team-controls {
@@ -113,4 +112,26 @@ body {
     font-size: 14px;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.sort-container {
+    /* background-color: darkcyan; */
+    justify-content: space-around;
+}
+
+.timer-container {
+    /* background-color: rosybrown; */
+    justify-content: center;
+}
+
+.timer-container input {
+    width: 60px;
+    height: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 1rem;
+}
+
+.timer-button-text {
+    font-size: 12px;
 }

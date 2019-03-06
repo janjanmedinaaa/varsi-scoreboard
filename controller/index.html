@@ -36,12 +36,18 @@
             </div>
         </div>
         <div class="bottom-button-container">
-            <div class="">
+            <div class="sort-container">
                 <label><input type="radio" name="order" value="alphabetical" v-model="orderModel">&nbsp;&nbsp;Alphabetical Order</label>
                 <label><input type="radio" name="order" value="ranking" v-model="orderModel">&nbsp;&nbsp;Ranking Order</label>
             </div>
-            <div class="">
-                
+            <div class="timer-container">
+                <input type="number" v-model="minutes"/> : <input type="number" v-model="seconds"/>
+                <button v-on:click="startTimer()" class="team-control-buttons team-controls-add">  
+                    <p class="text-style timer-button-text">START</p>
+                </button>
+                <button v-on:click="stopTimer()" class="team-control-buttons team-controls-minus">  
+                    <p class="text-style timer-button-text">RESET</p>
+                </button>
             </div>
         </div>
     </div>
