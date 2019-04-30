@@ -235,6 +235,7 @@ window.onload = () => {
 
                 switch(arg.name) {
                     case 'add':
+                        // this.displayTeams = this.sortTeams(this.displayTeams);
                         this.displayTeams[arg.index].score += arg.value;
                         break;
                     case 'minus':
@@ -275,6 +276,12 @@ window.onload = () => {
                             app.timer(0, 0)
                         }
 
+                        break;
+                    case 'scoreboard-reset': 
+                        store.delete('teams')
+
+                        let dbTeams = this.saveTeams()
+                        this.displayTeams = dbTeams
                         break;
                     default:
                         console.log('Message from controller (unknown):', arg)

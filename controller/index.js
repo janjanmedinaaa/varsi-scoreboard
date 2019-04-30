@@ -94,6 +94,14 @@ window.onload = () => {
             autoTimer: function(minutes = 0, seconds = 0) {
                 this.minutes = minutes;
                 this.seconds = seconds;
+            },
+
+            resetScoreboard: function() {
+                let data = {
+                    name: 'scoreboard-reset',
+                }
+
+                ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
             }
         },
         created: function() {

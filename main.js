@@ -7,14 +7,14 @@ function createWindow () {
     // Create the browser window.
     scoreboardWindow = new BrowserWindow({ width: 900, height: 700 })
     controllerWindow = new BrowserWindow({ width: 700, height: 600 })
-
+    
     // and load the index.html of the app.
     scoreboardWindow.loadFile('scoreboard/index.html')
     controllerWindow.loadFile('controller/index.html')
 
     // Open the DevTools.
-    // scoreboardWindow.webContents.openDevTools()
-    // controllerWindow.webContents.openDevTools()
+    scoreboardWindow.webContents.openDevTools()
+    controllerWindow.webContents.openDevTools()
 
     ipcMain.on('send-data-from-controller-to-scoreboard', (event, arg) => {
         // Request to update the label in the renderer process of the second window
