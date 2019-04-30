@@ -27,6 +27,7 @@ body {
     /* background-color: aquamarine; */
     display: flex;
     flex-direction: column;
+    font-family: Archeologicaps;
 }
 
 .top-button-container {
@@ -85,7 +86,7 @@ body {
     /* background-color: goldenrod; */
     flex-wrap: wrap;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     /* background-color: sandybrown; */
     align-items: center;
@@ -112,6 +113,7 @@ body {
     /* background-color: darkcyan; */
     margin: 10px;
     border-radius: 10px;
+    padding: 15px;
     /* flex-direction: column; */
 }
 
