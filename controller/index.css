@@ -1,6 +1,23 @@
+@font-face {
+    font-family: Archeologicaps;
+    src: url(../assets/Archeologicaps.ttf);
+}
+
+@font-face {
+    font-family: TrajanPro;
+    src: url(../assets/TrajanPro-Regular.otf);
+}
+
 body {
     display: flex;
-    background-image: url('../assets/bg2.jpg')
+    background-image: url('../assets/bg.png');
+    /* background-repeat: no-repeat;   */
+    /* background-position: 0% 0%; */
+    /* background-size: cover; */
+    height: 100%;
+    overflow: hidden;
+    font-family: Archeologicaps;
+    color: #fff;
 }
 
 .main-container {
@@ -20,12 +37,24 @@ body {
 }
 
 .top-button-container > div{
-    background-color: tan;
-    opacity: .9;
+    /* background-color: tan; */
+    opacity: 1;
+    display: flex;
+    flex-direction: row;
 }
 
-.top-button-text {
-    font-size: 13px;
+.top-controls {
+    height: 50px;
+}
+
+.xv-left {
+    margin-left: -8px;
+    height: 26px;
+}
+
+.level-images {
+    height: 30px;
+    border-radius: 30px;
 }
 
 .top-button-container button {
@@ -35,6 +64,19 @@ body {
     padding-right: 20px;
     background: none;
     border-style: none;
+    /* font-family: Archeologicaps; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+.level-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: TrajanPro;
 }
 
 .main-button-container {
@@ -89,7 +131,12 @@ body {
 }
 
 .team-control-buttons {
-    /* flex: 1; */
+    position: relative;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -97,41 +144,133 @@ body {
     justify-content: center;
     align-items: center;
     margin: 10px;
+    border-style: none;
+    -webkit-box-shadow: 0px 0px 101px 12px rgba(0,0,0,0.29);
+    -moz-box-shadow: 0px 0px 101px 12px rgba(0,0,0,0.29);
+    box-shadow: 0px 0px 101px 12px rgba(0,0,0,0.29);
 }
+  
+.team-control-buttons:after {
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    border-radius: 50px;
+    opacity: 0;
+    transition: all 0.6s
+}
+  
+.team-control-buttons:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+    overflow: hidden;
+}
+
 .team-controls-add {
-    background-color: springgreen;
+    background-color: #00C72B;
     margin-right: 5px;
 }
 
 .team-controls-minus {
-    background-color: crimson;
+    background-color: #C70039;
     margin-left: 5px;
 }
 
 .text-style {
     font-size: 14px;
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
 .sort-container {
     /* background-color: darkcyan; */
     justify-content: space-around;
+    margin-bottom: 20px;
 }
 
 .timer-container {
     /* background-color: rosybrown; */
-    justify-content: center;
+    /* justify-content: center; */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .timer-container input {
     width: 60px;
-    height: 40px;
+    height: 30px;
     margin-left: 5px;
     margin-right: 5px;
     font-size: 1rem;
+    border-radius: 30px;
+    border-style: none;
+    padding: 10px 12px;
 }
 
 .timer-button-text {
     font-size: 12px;
+    font-weight: bold;
+}
+
+.timer-inputs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    /* background-color: aqua; */
+}
+
+.auto-time-buttons {
+    position: relative;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    /* flex: 1; */
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border-style: none;
+    -webkit-box-shadow: 0px 0px 101px 12px rgba(0,0,0,0.29);
+    -moz-box-shadow: 0px 0px 101px 12px rgba(0,0,0,0.29);
+    box-shadow: 0px 0px 101px 12px rgba(0,0,0,0.29);
+}
+  
+.auto-time-buttons:after {
+    content: "";
+    background: grey;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    border-radius: 35px;
+    opacity: 0;
+    transition: all 0.6s
+}
+  
+.auto-time-buttons:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+    overflow: hidden;
+}
+
+.auto-time-buttons p {
+    margin: 0px;
+    font-weight: bold;
+}
+
+.margin-top {
+    margin-top: 20px;
 }

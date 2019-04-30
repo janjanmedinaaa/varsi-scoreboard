@@ -89,6 +89,11 @@ window.onload = () => {
                 }
 
                 ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
+            },
+
+            autoTimer: function(minutes = 0, seconds = 0) {
+                this.minutes = minutes;
+                this.seconds = seconds;
             }
         },
         created: function() {
@@ -114,11 +119,13 @@ window.onload = () => {
             },
 
             minutes: function(val, oldVal) { 
-                app.minutes = (val != "") ? val : 0
+                app.minutes = val || 0
+                console.log('New', app.minutes)
             },
 
             seconds: function(val, oldVal) {
-                app.seconds = (val != "") ? val : 0
+                app.seconds = val || 0
+                console.log('New', app.seconds)
             }
         }
     })
