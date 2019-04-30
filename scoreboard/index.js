@@ -15,44 +15,86 @@ window.onload = () => {
             interval: null,
             teams: [
                 {
-                    image: '../assets/angkas.png',
-                    name: 'College of Fine Arts and Design',
-                    shortcut: 'CFAD',
+                    image: '../assets/alphabetical.png',
+                    name: 'College of Science',
+                    shortcut: 'SCIENCE',
                     score: 0,
                     total: 0
                 },
                 {
-                    image: '../assets/angkas.png',
+                    image: '../assets/alphabetical.png',
                     name: 'Institute of Information and Computing Sciences',
                     shortcut: 'IICS',
                     score: 0,
                     total: 0
                 },
                 {
-                    image: '../assets/angkas.png',
-                    name: 'Conservatory of Music',
-                    shortcut: 'COM',
+                    image: '../assets/alphabetical.png',
+                    name: 'Faculty of Arts and Letters',
+                    shortcut: 'AB',
                     score: 0,
                     total: 0
                 },
                 {
-                    image: '../assets/angkas.png',
-                    name: 'College of Sciences',
-                    shortcut: 'COS',
+                    image: '../assets/alphabetical.png',
+                    name: 'College of Nursing',
+                    shortcut: 'NURSING',
                     score: 0,
                     total: 0
                 },
                 {
-                    image: '../assets/angkas.png',
-                    name: 'College of Tourism and Hospitality Management',
+                    image: '../assets/alphabetical.png',
+                    name: 'College of Education',
+                    shortcut: 'EDUC',
+                    score: 0,
+                    total: 0
+                },
+                {
+                    image: '../assets/alphabetical.png',
+                    name: 'College of Tourism and Hospitality',
                     shortcut: 'CTHM',
                     score: 0,
                     total: 0
                 },
                 {
-                    image: '../assets/angkas.png',
-                    name: 'College of Nursing',
-                    shortcut: 'CON',
+                    image: '../assets/alphabetical.png',
+                    name: 'Institute of Physical Education and Athletics',
+                    shortcut: 'IPEA',
+                    score: 0,
+                    total: 0
+                },
+                {
+                    image: '../assets/alphabetical.png',
+                    name: 'College of Accountancy',
+                    shortcut: 'AMV',
+                    score: 0,
+                    total: 0
+                },
+                {
+                    image: '../assets/alphabetical.png',
+                    name: 'College of Music',
+                    shortcut: 'MUSIC',
+                    score: 0,
+                    total: 0
+                },
+                {
+                    image: '../assets/alphabetical.png',
+                    name: 'Faculty of Pharmacy',
+                    shortcut: 'PHARMA',
+                    score: 0,
+                    total: 0
+                },
+                {
+                    image: '../assets/alphabetical.png',
+                    name: 'College of Engineering',
+                    shortcut: 'ENGG',
+                    score: 0,
+                    total: 0
+                },
+                {
+                    image: '../assets/alphabetical.png',
+                    name: 'College of Commerce and Business Administration',
+                    shortcut: 'COMM',
                     score: 0,
                     total: 0
                 }
@@ -175,20 +217,30 @@ window.onload = () => {
                     case 'timer-start':
                         if(!app.showModal) {
                             app.showModal = true;
-                            let fixTime = app.formatTime(arg.time.minutes, arg.time.seconds);
+                            let minutes = parseInt(arg.time.minutes) || 0
+                            let seconds = parseInt(arg.time.seconds) || 0
+
+                            console.log(app.showModal, minutes, seconds);
+                            let fixTime = app.formatTime(minutes, seconds);
 
                             app.time = app.twoDigitFormat(fixTime.minutes) + ':' + app.twoDigitFormat(fixTime.seconds);
                         } else {
-                            app.timer(arg.time.minutes, arg.time.seconds)
+                            let minutes = parseInt(arg.time.minutes) || 0
+                            let seconds = parseInt(arg.time.seconds) || 0
+
+                            console.log(app.showModal, minutes, seconds);
+                            app.timer(minutes, seconds)
                         }
 
                         break;
                     case 'timer-reset': 
-                        // if(app.showModal) {
+                        if(app.showModal) {
                             clearInterval(app.interval);
                             app.interval = null;
                             app.showModal = false;
-                        // }
+
+                            app.timer(0, 0)
+                        }
 
                         break;
                     default:

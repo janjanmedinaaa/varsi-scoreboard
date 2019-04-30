@@ -1,14 +1,34 @@
+@font-face {
+    font-family: Archeologicaps;
+    src: url(../assets/Archeologicaps.ttf);
+}
+
+@font-face {
+    font-family: TrajanPro;
+    src: url(../assets/TrajanPro-Regular.otf);
+}
+
 body {
-    background-image: url('../assets/bg2.jpg')
+    background-image: url('../assets/bg.png');
+    background-repeat: no-repeat;  
+    background-position: 0% 0%;
+    background-size: 100% 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Archeologicaps;
 }
 .main-container {
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 80%;
     /* background-color: aqua; */
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
+
+    /* justify-content: center; 
+    align-items: center; */
     margin: 0;
     padding: 0;
 }
@@ -42,7 +62,7 @@ body {
     flex: 1;
     flex-wrap: wrap;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     /* background-color: sandybrown; */
     align-items: center;
@@ -72,8 +92,9 @@ body {
     font-size: 1.3em;
     margin-left: 15px;
     margin-right: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     text-align: center;
+    color: #fff;
 }
 
 .team-name-wrap {
@@ -81,8 +102,9 @@ body {
     font-size: 1.3em;
     margin-left: 15px;
     margin-right: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     text-align: center;
+    color: #fff;
 }
 
 .score-container {
@@ -91,6 +113,8 @@ body {
     /* background-color: cadetblue; */
     justify-content: center;
     align-items: center;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .button-controls {
@@ -104,4 +128,9 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 1em;
+    font-family: TrajanPro;
+    color: #000;
+    -webkit-box-shadow: 0px 0px 101px 12px rgba(0,0,0,0.29);
+    -moz-box-shadow: 0px 0px 101px 12px rgba(0,0,0,0.29);
+    box-shadow: 0px 0px 101px 12px rgba(0,0,0,0.29);
 }
