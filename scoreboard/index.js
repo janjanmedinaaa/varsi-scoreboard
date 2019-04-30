@@ -1,5 +1,8 @@
 const { ipcRenderer } = require('electron');
 
+const Store = require('electron-store');
+const store = new Store();
+
 window.onload = () => {
     Vue.component('modal', {
         props: ['time'],
@@ -13,7 +16,7 @@ window.onload = () => {
             showModal: false,
             time: '00:00',
             interval: null,
-            teams: [
+            initTeams: [
                 {
                     image: '../assets/alphabetical.png',
                     name: 'College of Science',
@@ -98,7 +101,9 @@ window.onload = () => {
                     score: 0,
                     total: 0
                 }
-            ]
+            ],
+
+            displayTeams: []
         },
         methods: {
             getClass: function(property) {
@@ -107,28 +112,49 @@ window.onload = () => {
                 switch (property) {
                     case 'teams':
                         classes = {
-                            'teams-container-wrap': this.teams.length > 5,
-                            'teams-container': !(this.teams.length > 5)
+                            'teams-container-wrap': this.displayTeams.length > 5,
+                            'teams-container': !(this.displayTeams.length > 5)
                         }
 
                         break;
                     case 'team':
                         classes = {
-                            'team-container-wrap': this.teams.length > 5,
-                            'team-container': !(this.teams.length > 5)
+                            'team-container-wrap': this.displayTeams.length > 5,
+                            'team-container': !(this.displayTeams.length > 5)
                         }
 
                         break;
                     case 'team-name':
                         classes = {
-                            'team-name-wrap': this.teams.length > 5,
-                            'team-name': !(this.teams.length > 5)
+                            'team-name-wrap': this.displayTeams.length > 5,
+                            'team-name': !(this.displayTeams.length > 5)
                         }
 
                         break;
                 }
 
                 return classes;
+            },
+
+            saveTeams: function(teams = this.initTeams) {
+                let dbTeams = store.get('teams')
+                console.log('save teams')
+
+                if(dbTeams === undefined || dbTeams === null) {
+                    store.set('teams', this.initTeams)
+                    console.log('Store team set')
+
+                    dbTeams = this.initTeams
+                } else {
+                    store.set('teams', teams)
+                    console.log('Store team new')
+
+                    dbTeams = teams
+                }
+
+                console.log('WOW', dbTeams)
+
+                return dbTeams
             },
 
             sortTeams: function(teams, order = 'alphabetical') {
@@ -186,11 +212,18 @@ window.onload = () => {
         },
         created: function () {
             console.log('SCOREBOARD CREATED')
-            this.teams = this.sortTeams(this.teams)
+            let getDbTeams = store.get('teams')
+
+            let dbTeams = this.saveTeams(getDbTeams)
+
+            console.log('DBTEAMS', dbTeams)
+            dbTeams = this.sortTeams(dbTeams)
+
+            this.displayTeams = dbTeams
 
             let data = {
                 name: 'teams',
-                teams: this.teams
+                teams: dbTeams
             }
 
             // Send Team data to Controller view to list current number of teams
@@ -198,21 +231,21 @@ window.onload = () => {
 
             // Listen to messages from Controller
             ipcRenderer.on('message-from-controller-to-scoreboard', (event, arg) => {
-                // console.log('Message from controller', arg)
+                console.log('Message from controller', arg)
 
                 switch(arg.name) {
                     case 'add':
-                        this.teams[arg.index].score += arg.value;
+                        this.displayTeams[arg.index].score += arg.value;
                         break;
                     case 'minus':
-                        this.teams[arg.index].score -= arg.value;
+                        this.displayTeams[arg.index].score -= arg.value;
                         break;
                     case 'sort':
-                        this.teams = this.sortTeams(this.teams, arg.order)
+                        this.displayTeams = this.sortTeams(this.displayTeams, arg.order)
                         break;
                     case 'finals': 
-                        let sorted = this.sortTeams(this.teams, arg.order)
-                        this.teams = sorted.slice(0,5);
+                        let sorted = this.sortTeams(this.displayTeams, arg.order)
+                        this.displayTeams = sorted.slice(0,5);
                         break;
                     case 'timer-start':
                         if(!app.showModal) {
@@ -246,6 +279,9 @@ window.onload = () => {
                     default:
                         console.log('Message from controller (unknown):', arg)
                 }
+
+                let saveTeams = this.saveTeams(this.displayTeams)
+                console.log('Save New Teams', saveTeams)
             });
         }
     })
