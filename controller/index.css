@@ -73,11 +73,11 @@ body {
 }
 
 .level-button {
-    display: flex;
+    display: flex; 
     justify-content: center;
     align-items: center;
-    text-align: center;
-    font-family: TrajanPro;
+    border-bottom-width: 5px;
+    border-bottom-color: black;
 }
 
 .main-button-container {
@@ -201,6 +201,7 @@ body {
 
 .timer-container {
     flex: 1.3;
+    /* flex: 1; */
     /* background-color: rosybrown; */
     justify-content: center;
     display: flex;

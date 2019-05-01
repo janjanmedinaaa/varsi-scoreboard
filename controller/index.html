@@ -39,10 +39,10 @@
                     <p class="text-style">{{ team.name }}</p>
                 </div>
                 <div class="team-control-buttons-container">
-                    <button v-on:click="addScore(index)" class="team-control-buttons team-controls-add">  
+                    <button v-on:click="addScore(index, team.shortcut)" class="team-control-buttons team-controls-add">  
                         <p class="text-style">+</p>
                     </button>
-                    <button v-on:click="minusScore(index)" class="team-control-buttons team-controls-minus">
+                    <button v-on:click="minusScore(index, team.shortcut)" class="team-control-buttons team-controls-minus">
                         <p class="text-style">-</p>
                     </button>
                 </div>
