@@ -3,6 +3,8 @@ const { ipcRenderer } = require('electron');
 const Store = require('electron-store');
 const store = new Store();
 
+const data = require('../data');
+
 window.onload = () => {
     Vue.component('modal', {
         props: ['time'],
@@ -16,96 +18,19 @@ window.onload = () => {
             showModal: false,
             time: '00:00',
             interval: null,
-            initTeams: [
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'College of Science',
-                    shortcut: 'SCIENCE',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'Institute of Information and Computing Sciences',
-                    shortcut: 'IICS',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'Faculty of Arts and Letters',
-                    shortcut: 'AB',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'College of Nursing',
-                    shortcut: 'NURSING',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'College of Education',
-                    shortcut: 'EDUC',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'College of Tourism and Hospitality',
-                    shortcut: 'CTHM',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'Institute of Physical Education and Athletics',
-                    shortcut: 'IPEA',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'College of Accountancy',
-                    shortcut: 'AMV',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'College of Music',
-                    shortcut: 'MUSIC',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'Faculty of Pharmacy',
-                    shortcut: 'PHARMA',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'College of Engineering',
-                    shortcut: 'ENGG',
-                    score: 0,
-                    total: 0
-                },
-                {
-                    image: '../assets/alphabetical.png',
-                    name: 'College of Commerce and Business Administration',
-                    shortcut: 'COMM',
-                    score: 0,
-                    total: 0
-                }
-            ],
-
             displayTeams: []
         },
         methods: {
+            sendStartup: function(dbTeams) {
+                let data = {
+                    name: 'teams',
+                    teams: dbTeams
+                }
+    
+                // Send Team data to Controller view to list current number of teams
+                ipcRenderer.send('send-data-from-scoreboard-to-controller', data);
+            },
+
             getClass: function(property) {
                 let classes = {}
 
@@ -136,15 +61,15 @@ window.onload = () => {
                 return classes;
             },
 
-            saveTeams: function(teams = this.initTeams) {
+            saveTeams: function(teams = data.teams, reset = false) {
                 let dbTeams = store.get('teams')
                 console.log('save teams')
 
-                if(dbTeams === undefined || dbTeams === null) {
-                    store.set('teams', this.initTeams)
+                if(dbTeams === undefined || dbTeams === null || reset) {
+                    store.set('teams', data.teams)
                     console.log('Store team set')
 
-                    dbTeams = this.initTeams
+                    dbTeams = data.teams
                 } else {
                     store.set('teams', teams)
                     console.log('Store team new')
@@ -208,12 +133,23 @@ window.onload = () => {
 
             twoDigitFormat: function(n = 0) {
                 return n > 9 ? "" + n: "0" + n;
+            },
+
+            getIndex: function(search) {
+                let index = 0;
+
+                this.displayTeams.forEach((college, i) => {
+                    if(college.shortcut == search) 
+                        index = i
+                });
+
+                return index;
             }
         },
         created: function () {
             console.log('SCOREBOARD CREATED')
             let getDbTeams = store.get('teams')
-
+    
             let dbTeams = this.saveTeams(getDbTeams)
 
             console.log('DBTEAMS', dbTeams)
@@ -221,13 +157,7 @@ window.onload = () => {
 
             this.displayTeams = dbTeams
 
-            let data = {
-                name: 'teams',
-                teams: dbTeams
-            }
-
-            // Send Team data to Controller view to list current number of teams
-            ipcRenderer.send('send-data-from-scoreboard-to-controller', data);
+            this.sendStartup(dbTeams);
 
             // Listen to messages from Controller
             ipcRenderer.on('message-from-controller-to-scoreboard', (event, arg) => {
@@ -235,11 +165,12 @@ window.onload = () => {
 
                 switch(arg.name) {
                     case 'add':
-                        // this.displayTeams = this.sortTeams(this.displayTeams);
-                        this.displayTeams[arg.index].score += arg.value;
+                        let index1 = this.getIndex(arg.college)
+                        this.displayTeams[index1].score += arg.value;
                         break;
                     case 'minus':
-                        this.displayTeams[arg.index].score -= arg.value;
+                        let index2 = this.getIndex(arg.college)
+                        this.displayTeams[index2].score -= arg.value;
                         break;
                     case 'sort':
                         this.displayTeams = this.sortTeams(this.displayTeams, arg.order)
@@ -278,17 +209,21 @@ window.onload = () => {
 
                         break;
                     case 'scoreboard-reset': 
-                        store.delete('teams')
+                        store.set('teams', data.teams);
 
-                        let dbTeams = this.saveTeams()
+                        let dbTeams = this.sortTeams(store.get('teams'))
                         this.displayTeams = dbTeams
+
+                        this.sendStartup(dbTeams)
                         break;
                     default:
                         console.log('Message from controller (unknown):', arg)
                 }
 
-                let saveTeams = this.saveTeams(this.displayTeams)
-                console.log('Save New Teams', saveTeams)
+                if(arg.name !== 'scoreboard-reset') {
+                    let saveTeams = this.saveTeams(this.displayTeams)
+                    console.log('Save New Teams', saveTeams)
+                }
             });
         }
     })
