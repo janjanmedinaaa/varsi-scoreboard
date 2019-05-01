@@ -1,4 +1,5 @@
 const { ipcRenderer } = require('electron');
+const { dialog } = require('electron').remote;
 
 window.onload = () => {
     new Vue({
@@ -28,25 +29,27 @@ window.onload = () => {
                 this.increment = value
             },
 
-            addScore: function(index) {
+            addScore: function(index, college) {
                 console.log('Add 1 in:', index)
 
                 let data = {
                     name: 'add',
                     value: this.increment,
-                    index
+                    index,
+                    college
                 }
 
                 ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
             },
 
-            minusScore: function(index) {
+            minusScore: function(index, college) {
                 console.log('Minus 1 in:', index)
 
                 let data = {
                     name: 'minus',
                     value: this.increment,
-                    index
+                    index,
+                    college
                 }
 
                 ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
@@ -60,7 +63,15 @@ window.onload = () => {
                     order: 'ranking'
                 }
 
-                ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
+                let options  = {
+                    buttons: ['Yes', 'Cancel'],
+                    message: 'Are you sure you want to proceed to Finals?'
+                }
+
+                let response = dialog.showMessageBox(options)
+
+                if(response == 0)
+                    ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
             },
 
             startTimer: function() {
@@ -101,7 +112,17 @@ window.onload = () => {
                     name: 'scoreboard-reset',
                 }
 
-                ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
+                let options  = {
+                    buttons: ['Yes', 'Cancel'],
+                    message: 'Are you sure you want to reset the Scoreboard?'
+                }
+
+                let response = dialog.showMessageBox(options)
+
+                if(response == 0)
+                    ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
+                    
+                console.log(response)
             }
         },
         created: function() {
