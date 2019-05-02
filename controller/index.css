@@ -8,6 +8,12 @@
     src: url(../assets/TrajanPro-Regular.otf);
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 body {
     display: flex;
     background-image: url('../assets/bg.png');
@@ -46,6 +52,11 @@ body {
 
 .top-controls {
     height: 50px;
+    transition: 0.3s;
+}
+
+.top-controls:hover {
+    height: 58px;
 }
 
 .xv-left {
