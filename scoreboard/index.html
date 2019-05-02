@@ -22,7 +22,7 @@
                 </slot>
                 </div>
     
-                <div class="modal-body">
+                <div class="modal-body" v-bind:style="{ color: color }">
                 <slot name="body">
                     {{ time }}
                 </slot>
@@ -54,7 +54,7 @@
             </div>
         </div>
         <!-- <button id="show-modal" v-on:click="showModal = true">Show Modal</button> -->
-        <modal v-if="showModal" @close="showModal = false" :time="time" />
+        <modal v-if="showModal" @close="showModal = false" :time="time" :color="color" />
     </div>
 </body>
 </html>

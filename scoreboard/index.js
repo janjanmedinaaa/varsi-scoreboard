@@ -7,7 +7,7 @@ const data = require('../data');
 
 window.onload = () => {
     Vue.component('modal', {
-        props: ['time'],
+        props: ['time', 'color'],
         template: '#modal-template'
     })
     
@@ -18,7 +18,8 @@ window.onload = () => {
             showModal: false,
             time: '00:00',
             interval: null,
-            displayTeams: []
+            displayTeams: [],
+            color: 'black'
         },
         methods: {
             sendStartup: function(dbTeams) {
@@ -104,6 +105,9 @@ window.onload = () => {
                         minutes -= 1; seconds = 59;
                     }
 
+                    if(seconds <= 5)
+                        app.color = 'red'
+                        
                     app.time = app.twoDigitFormat(minutes) + ':' + app.twoDigitFormat(seconds)
                     seconds -= 1;
 
@@ -181,6 +185,7 @@ window.onload = () => {
                         break;
                     case 'timer-start':
                         if(!app.showModal) {
+                            app.color = 'black';
                             app.showModal = true;
                             let minutes = parseInt(arg.time.minutes) || 0
                             let seconds = parseInt(arg.time.seconds) || 0
