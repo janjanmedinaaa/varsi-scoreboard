@@ -102,9 +102,37 @@ window.onload = () => {
                 ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
             },
 
-            autoTimer: function(minutes = 0, seconds = 0) {
-                this.minutes = minutes;
-                this.seconds = seconds;
+            toSeconds: function(minutes = 0, seconds = 0) {
+                return seconds + (minutes * 60)
+            },
+
+            autoTimer: function(seconds = 0) {
+                let currTimer = this.toSeconds(this.minutes, this.seconds);
+                
+                currTimer += seconds;
+                
+                let format = this.formatTime(0, currTimer)
+
+                this.minutes = format.minutes;
+                this.seconds = format.seconds;
+            },
+
+            formatTime: function(minutes = 0, seconds = 0) {
+                minutes = parseInt(minutes);
+                seconds = parseInt(seconds);
+
+                if(seconds >= 60) {
+                    let addMinutes = seconds / 60
+                    minutes += addMinutes
+                    seconds = seconds % 60
+                }
+
+                minutes = Math.floor(minutes)
+
+                return {
+                    minutes,
+                    seconds
+                }
             },
 
             resetScoreboard: function() {
