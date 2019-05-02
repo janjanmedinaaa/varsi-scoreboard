@@ -135,6 +135,15 @@ window.onload = () => {
                 }
             },
 
+            sortScoreboard: function(order) {
+                let data = {
+                    name: 'sort',
+                    order: order
+                }
+
+                ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
+            },
+
             resetScoreboard: function() {
                 let data = {
                     name: 'scoreboard-reset',

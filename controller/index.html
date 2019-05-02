@@ -50,8 +50,8 @@
         </div>
         <div class="bottom-button-container">
             <div class="sort-container">
-                <label><input type="radio" name="order" value="alphabetical" v-model="orderModel">&nbsp;&nbsp;Alphabetical Order</label>
-                <label><input type="radio" name="order" value="ranking" v-model="orderModel">&nbsp;&nbsp;Ranking Order</label>
+                <button v-on:click="sortScoreboard('alphabetical')">Alphabetical Order</button>
+                <button v-on:click="sortScoreboard('ranking')">Ranking Order</button>
             </div>
             <div class="timer-container">
                 <div class="timer-inputs-container">
