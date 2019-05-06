@@ -135,6 +135,24 @@ window.onload = () => {
                 }
             },
 
+            addToTotalScore: function() {
+                let data = {
+                    name: 'add-to-total',
+                }
+
+                let options  = {
+                    buttons: ['Yes', 'Cancel'],
+                    message: 'Are you sure you want to add the current score to the total score?'
+                }
+
+                let response = dialog.showMessageBox(options)
+
+                if(response == 0)
+                    ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
+                    
+                console.log(response)
+            },
+
             sortScoreboard: function(order) {
                 let data = {
                     name: 'sort',

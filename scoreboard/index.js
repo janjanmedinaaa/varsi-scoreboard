@@ -83,13 +83,16 @@ window.onload = () => {
                 return dbTeams
             },
 
-            sortTeams: function(teams, order = 'alphabetical') {
+            sortTeams: function(teams, order = 'alphabetical', finals = false) {
                 console.log('Sort Teams')
 
                 return teams.sort(function(a, b) {
                     if(order == 'alphabetical')
                         return a.shortcut.localeCompare(b.shortcut);
                     
+                    if(finals)
+                        return b.total - a.total
+
                     return b.score - a.score
                 })
             },
@@ -148,6 +151,17 @@ window.onload = () => {
                 });
 
                 return index;
+            },
+
+            currToTotal: function() {
+                let tempArray = this.displayTeams;
+
+                tempArray.forEach((team, index) => {
+                    team.total += team.score;
+                    team.score = 0;
+                })
+
+                this.displayTeams = tempArray;
             }
         },
         created: function () {
@@ -180,8 +194,12 @@ window.onload = () => {
                         this.displayTeams = this.sortTeams(this.displayTeams, arg.order)
                         break;
                     case 'finals': 
-                        let sorted = this.sortTeams(this.displayTeams, arg.order)
-                        this.displayTeams = sorted.slice(0,5);
+                        this.currToTotal();
+
+                        let sorted = this.sortTeams(this.displayTeams, arg.order, true)
+                        let finalist = sorted.slice(0,5);
+
+                        this.displayTeams = this.sortTeams(finalist, 'alphabetical');
                         break;
                     case 'timer-start':
                         if(!app.showModal) {
@@ -220,6 +238,9 @@ window.onload = () => {
                         this.displayTeams = dbTeams
 
                         this.sendStartup(dbTeams)
+                        break;
+                    case 'add-to-total':
+                        this.currToTotal();
                         break;
                     default:
                         console.log('Message from controller (unknown):', arg)

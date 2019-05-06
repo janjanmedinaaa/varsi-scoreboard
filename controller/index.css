@@ -43,6 +43,11 @@ body {
     /* justify-content: flex-end; */
 }
 
+.top-button-container p {
+    font-family: Archeologicaps;
+    font-size: 10px;
+}
+
 .top-button-container > div{
     /* background-color: tan; */
     opacity: 1;
@@ -51,12 +56,12 @@ body {
 }
 
 .top-controls {
-    height: 50px;
+    height: 60px;
     transition: 0.3s;
 }
 
 .top-controls:hover {
-    height: 58px;
+    height: 68px;
 }
 
 .xv-left {

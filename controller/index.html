@@ -13,9 +13,15 @@
         <div class="top-button-container">
             <button class="top-button-text">
                 <img src="../assets/backtomain.png" class="top-controls" alt="back-to-main">
+                <p>Back to Main Screen</p>
             </button>
             <button class="top-button-text" v-on:click="proceedFinals()">
                 <img src="../assets/finals.png" class="top-controls" alt="back-to-main">
+                <p>Proceed to Finals</p>
+            </button>
+            <button class="top-button-text" v-on:click="addToTotalScore()">
+                <img src="../assets/finals.png" class="top-controls" alt="back-to-main">
+                <p>Add to Total Score</p>
             </button>
             <div>
                 <button v-on:click="changeIncrement(1, 5) " v-bind:style="levelSelected(1)" class="level-button">
