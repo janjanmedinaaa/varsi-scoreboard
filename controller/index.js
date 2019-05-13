@@ -12,8 +12,32 @@ window.onload = () => {
             orderModel: 'alphabetical',
             minutes: 0,
             seconds: 0,
+            activateScore: [true,false,false,false],
+            activateSort: [true,false],
+            numberScore: 0,
+            numberSort: 0
         },
         methods: {
+            pointActivate: function(numberScore){
+                if(numberScore == 0){
+                    this.activateScore = [true,false,false,false];
+                }else if(numberScore == 1){
+                    this.activateScore = [false, true, false, false];
+                }else if(numberScore == 2){
+                    this.activateScore = [false,false,true,false];
+                }else{
+                    this.activateScore = [false,false,false,true];
+                }
+            },
+
+            sortActivate: function(numberSort){
+                if(numberSort == 0){
+                    this.activateSort = [true,false];
+                }else if(numberSort == 1){
+                    this.activateSort = [false, true];
+                }
+            },
+
             levelSelected: function(level) {
                 if(level == this.level) {
                     return {

@@ -7,6 +7,7 @@
     <script src="index.js"></script>
     <link href="index.css" rel="stylesheet" />
     <link href="modal.css" rel="stylesheet" />
+    <link href="../styles/animate.css" rel="stylesheet" />
     <title>Varsitarian Scoreboard</title>
 </head>
 <body>
@@ -46,7 +47,7 @@
                 </div>
                 <p v-bind:class="getClass('team-name')">{{ (displayTeams.length > 5) ? team.shortcut : team.name }}</p>
                 <div class="score-container">
-                    <p class="button-controls team-name">{{ team.score }}</p>
+                    <p class="button-controls">{{ team.score }}</p>
                 </div>
                 <div class="score-container">
                     <p class="button-controls team-name">{{ team.total }}</p>

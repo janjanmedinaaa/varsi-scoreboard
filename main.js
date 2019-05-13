@@ -5,9 +5,12 @@ let controllerWindow
 
 function createWindow () {
     // Create the browser window.
-    scoreboardWindow = new BrowserWindow({ width: 900, height: 700 })
+    scoreboardWindow = new BrowserWindow({ width: 900, height: 700, fullscreen: true })
     controllerWindow = new BrowserWindow({ width: 700, height: 600 })
     
+    // Hide Menu
+    scoreboardWindow.setMenu(null);
+
     // and load the index.html of the app.
     scoreboardWindow.loadFile('scoreboard/index.html')
     controllerWindow.loadFile('controller/index.html')

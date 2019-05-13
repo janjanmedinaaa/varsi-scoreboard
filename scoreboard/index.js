@@ -19,7 +19,8 @@ window.onload = () => {
             time: '00:00',
             interval: null,
             displayTeams: [],
-            color: 'black'
+            color: 'black',
+            manipulate: 'animated bounce delay-1s'
         },
         methods: {
             sendStartup: function(dbTeams) {
@@ -114,8 +115,12 @@ window.onload = () => {
                     app.time = app.twoDigitFormat(minutes) + ':' + app.twoDigitFormat(seconds)
                     seconds -= 1;
 
-                    if(minutes == 0 && seconds < 0)
-                        clearInterval(app.interval)
+                    if(minutes == 0 && seconds < -1){
+                        clearInterval(app.interval);
+                        app.showModal = false;
+                    }
+                        
+
 
                 }, 1000)
             },
@@ -217,17 +222,17 @@ window.onload = () => {
                             let seconds = parseInt(arg.time.seconds) || 0
 
                             console.log(app.showModal, minutes, seconds);
-                            app.timer(minutes, seconds)
+                            app.timer(minutes, seconds);
                         }
 
                         break;
                     case 'timer-reset': 
                         if(app.showModal) {
-                            clearInterval(app.interval);
-                            app.interval = null;
-                            app.showModal = false;
+                             clearInterval(app.interval);
+                             app.interval = null;
+                             app.showModal = false;
 
-                            app.timer(0, 0)
+                             app.timer(0, 0)
                         }
 
                         break;
