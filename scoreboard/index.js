@@ -20,9 +20,9 @@ window.onload = () => {
             interval: null,
             displayTeams: [],
             color: 'black',
-            animationPoint: ''
+            animationPoint: '',
         },
-        methods: {
+        methods: {            
             sendStartup: function(dbTeams) {
                 let data = {
                     name: 'teams',
@@ -108,10 +108,9 @@ window.onload = () => {
                     if(minutes != 0 && seconds < 0) {
                         minutes -= 1; seconds = 59;
                     }
-
-                    if(seconds <= 5)
+                    if(seconds <= 10)
                         app.color = 'red'
-                        
+                                           
                     app.time = app.twoDigitFormat(minutes) + ':' + app.twoDigitFormat(seconds)
                     seconds -= 1;
 
@@ -119,9 +118,13 @@ window.onload = () => {
                         clearInterval(app.interval);
                         app.showModal = false;
                     }
+
+                    if(minutes == 0 && seconds == 9){
+                        var audio = new Audio('../assets/sounds/countdown.mp3');
+                        audio.play();           
+                    }
+                    
                         
-
-
                 }, 1000)
             },
 
@@ -193,7 +196,6 @@ window.onload = () => {
                     case 'add':
                         let index1 = this.getIndex(arg.college)
                         this.displayTeams[index1].score += arg.value;
-                        
                         break;
                     case 'minus':
                         let index2 = this.getIndex(arg.college)
@@ -201,12 +203,12 @@ window.onload = () => {
                         break;
                     case 'sort':
                         this.displayTeams = this.sortTeams(this.displayTeams, arg.order);
-                        this.animationPoint = 'animated zoomIn';
+                        this.animationPoint = 'animated zoomIn faster';
 
                         console.log('Start time');
-                        this.delay(2500, () => {
+                        this.delay(1200, () => {
                             this.animationPoint = '';
-                            console.log("Finished waiting for 2 second.");
+                            console.log("Finished waiting for 1.2 second.");
                         })
                         
                         

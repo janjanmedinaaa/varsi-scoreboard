@@ -38,7 +38,6 @@
         </div>
         </transition>
     </script>
-    
     <div id="app" class="main-container" v-bind:class="animationPoint">
         <div v-bind:class="getClass('teams')">
             <div v-bind:class="getClass('team')" v-for="team in displayTeams">
@@ -47,7 +46,7 @@
                 </div>
                 <p v-bind:class="getClass('team-name')">{{ (displayTeams.length > 5) ? team.shortcut : team.name }}</p>
                 <div class="score-container">
-                    <p class="button-controls">{{ team.score }}</p>
+                    <p class="button-controls" >{{ team.score }}</p>
                 </div>
                 <div class="score-container">
                     <p class="button-controls team-name">{{ team.total }}</p>

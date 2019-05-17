@@ -1,5 +1,8 @@
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron')
 
+// Enable autoplay
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
+
 let scoreboardWindow
 let controllerWindow
 
@@ -17,7 +20,7 @@ function createWindow () {
 
     // Open the DevTools.
     scoreboardWindow.webContents.openDevTools()
-    controllerWindow.webContents.openDevTools()
+    // controllerWindow.webContents.openDevTools()
 
     ipcMain.on('send-data-from-controller-to-scoreboard', (event, arg) => {
         // Request to update the label in the renderer process of the second window
