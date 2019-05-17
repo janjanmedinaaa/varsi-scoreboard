@@ -15,7 +15,8 @@ window.onload = () => {
             activateScore: [true,false,false,false],
             activateSort: [true,false],
             numberScore: 0,
-            numberSort: 0
+            numberSort: 0,
+            animationPoint: ''
         },
         methods: {
             pointActivate: function(numberScore){

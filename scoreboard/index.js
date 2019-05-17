@@ -20,7 +20,7 @@ window.onload = () => {
             interval: null,
             displayTeams: [],
             color: 'black',
-            manipulate: 'animated bounce delay-1s'
+            animationPoint: ''
         },
         methods: {
             sendStartup: function(dbTeams) {
@@ -167,6 +167,9 @@ window.onload = () => {
                 })
 
                 this.displayTeams = tempArray;
+            },
+            delay: function (ms, cb){
+                setTimeout(cb, ms);
             }
         },
         created: function () {
@@ -190,13 +193,23 @@ window.onload = () => {
                     case 'add':
                         let index1 = this.getIndex(arg.college)
                         this.displayTeams[index1].score += arg.value;
+                        
                         break;
                     case 'minus':
                         let index2 = this.getIndex(arg.college)
                         this.displayTeams[index2].score -= arg.value;
                         break;
                     case 'sort':
-                        this.displayTeams = this.sortTeams(this.displayTeams, arg.order)
+                        this.displayTeams = this.sortTeams(this.displayTeams, arg.order);
+                        this.animationPoint = 'animated zoomIn';
+
+                        console.log('Start time');
+                        this.delay(2500, () => {
+                            this.animationPoint = '';
+                            console.log("Finished waiting for 2 second.");
+                        })
+                        
+                        
                         break;
                     case 'finals': 
                         this.currToTotal();

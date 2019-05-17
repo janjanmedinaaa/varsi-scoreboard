@@ -39,7 +39,7 @@
         </transition>
     </script>
     
-    <div id="app" class="main-container">
+    <div id="app" class="main-container" v-bind:class="animationPoint">
         <div v-bind:class="getClass('teams')">
             <div v-bind:class="getClass('team')" v-for="team in displayTeams">
                 <div class="score-container">
