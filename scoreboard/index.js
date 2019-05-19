@@ -195,11 +195,16 @@ window.onload = () => {
                 switch(arg.name) {
                     case 'add':
                         let index1 = this.getIndex(arg.college)
-                        this.displayTeams[index1].score += arg.value;
+                        var audio = new Audio('../assets/sounds/add score.mp3');
+                        audio.play(); 
+                        this.displayTeams[index1].score += arg.value
                         break;
                     case 'minus':
                         let index2 = this.getIndex(arg.college)
-                        this.displayTeams[index2].score -= arg.value;
+                        var tempSubtract = this.displayTeams[index2].score - arg.value;
+                        if(tempSubtract >= 0) {
+                            this.displayTeams[index2].score -= arg.value;
+                        }   
                         break;
                     case 'sort':
                         this.displayTeams = this.sortTeams(this.displayTeams, arg.order);

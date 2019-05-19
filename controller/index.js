@@ -56,9 +56,6 @@ window.onload = () => {
 
             addScore: function(index, college) {
                 console.log('Add 1 in:', index)
-                var audio = new Audio('../assets/sounds/add score.mp3');
-                audio.play(); 
-
                 let data = {
                     name: 'add',
                     value: this.increment,

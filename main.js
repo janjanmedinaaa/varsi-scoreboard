@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron')
+const { app, BrowserWindow, ipcMain, ipcRenderer, Menu } = require('electron')
 
 // Enable autoplay
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
@@ -8,8 +8,14 @@ let controllerWindow
 
 function createWindow () {
     // Create the browser window.
-    scoreboardWindow = new BrowserWindow({ width: 900, height: 700, fullscreen: true })
-    controllerWindow = new BrowserWindow({ width: 700, height: 600 })
+    scoreboardWindow = new BrowserWindow({width: 900, height: 700, fullscreen: true })
+    controllerWindow = new BrowserWindow({ width: 700, height: 600,
+    })
+
+    //Build Menu from template 
+    const mainMenu = Menu.buildFromTemplate(menuTemplate);
+    //Insert Menu
+    Menu.setApplicationMenu(mainMenu);
     
     // Hide Menu
     scoreboardWindow.setMenu(null);
@@ -43,9 +49,31 @@ function createWindow () {
         scoreboardWindow = null
         controllerWindow = null
     })
+
 }
 
 app.on('ready', createWindow)
+
+
+// Create Menu Template 
+const menuTemplate = [
+    {
+            label: 'View',
+            submenu: [
+            { role: 'reload' },
+            { role: 'forcereload' },
+            { role: 'toggledevtools' },
+            { type: 'separator' },
+            { role: 'resetzoom' },
+            { role: 'zoomin' },
+            { role: 'zoomout' },
+            { type: 'separator' },
+            { role: 'togglefullscreen' }
+        
+      ]
+    }
+  ];
+
 
 app.on('window-all-closed', () => {
     app.quit()
