@@ -207,7 +207,7 @@ window.onload = () => {
                         let index2 = this.getIndex(arg.college)
                         var tempSubtract = this.displayTeams[index2].score - arg.value;
                         if(tempSubtract >= 0) {
-                            this.displayTeams[index2].score -= arg.value;
+                            this.displayTeams[index2].score = tempSubtract;
                         }   
                         break;
                     case 'sort':
@@ -281,12 +281,11 @@ window.onload = () => {
                         break;
                     case 'main-menu':
                         if(!app.showModal) {
-                            app.color = 'black';
+                            app.color = 'pink';
                             app.modalHeight = 100;
                             app.modalWidth = 100;
                             app.showModal = true;
-
-                            app.time = 'MENU';
+                            app.time = '';
                         } else {
                             app.showModal = false;
                         }

@@ -7,7 +7,6 @@
     <script src="index.js"></script>
     <link href="index.css" rel="stylesheet" />
     <link href="modal.css" rel="stylesheet" />
-    <link href="menu.css" rel="stylesheet" />
     <link href="../styles/animate.css" rel="stylesheet" />
     <title>Varsitarian Scoreboard</title>
 </head>
@@ -16,25 +15,36 @@
         <transition name="modal">
         <div class="modal-mask">
             <div class="modal-wrapper">
-            <div class="modal-container" v-bind:style="{ width: width + '%', height: height + '%' }">
-    
+            <div v-if="color == 'black' || color == 'red'" class="modal-container" v-bind:style="{ width: width + '%', height: height + '%' }">
                 <div class="modal-header">
                 <slot name="header">
-                    
                 </slot>
                 </div>
     
-                <div class="modal-body" v-bind:style="{ color: color }">
-                <slot name="body">
-                    {{ time }}
-                </slot>
+                <div class="modal-body" v-bind:style="{color: color}">
+                    <slot name="body">
+                        {{ time }}
+                    </slot> 
                 </div>
-    
                 <div class="modal-footer">
                 <slot name="footer">
                 </slot>
                 </div>
             </div>
+            <div v-else class="modal-container2" v-bind:style="{ width: width + '%', height: height + '%' }">
+                    <div class="modal-header">
+                    <slot name="header">
+                    </slot>
+                    </div>
+                    <div class="modal-body" v-bind:style="{color: color}">
+                    <img src="../assets/colleges/PautakanLogo.gif" height="50%" weight="50%"> 
+                    </div>
+        
+                    <div class="modal-footer">
+                    <slot name="footer">
+                    </slot>
+                    </div>
+                </div>
             </div>
         </div>
         </transition>
