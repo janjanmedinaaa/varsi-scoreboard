@@ -7,14 +7,10 @@ const data = require('../data');
 
 window.onload = () => {
     Vue.component('modal', {
-        props: ['time', 'color'],
+        props: ['time', 'color', 'width', 'height'],
         template: '#modal-template'
     })
 
-    Vue.component('menu-view', {
-        template: '#menu-template'
-    })
-    
     const app = new Vue({
         el: '#app',
         data: {
@@ -26,7 +22,9 @@ window.onload = () => {
             displayTeams: [],
             color: 'black',
             animationPoint: '',
-            menuStatus: false
+            menuStatus: false,
+            modalWidth: 80,
+            modalHeight: 60,
         },
         methods: {            
             sendStartup: function(dbTeams) {
@@ -241,6 +239,8 @@ window.onload = () => {
                     case 'timer-start':
                         if(!app.showModal) {
                             app.color = 'black';
+                            app.modalWidth = 80;
+                            app.modalHeight = 60;
                             app.showModal = true;
                             let minutes = parseInt(arg.time.minutes) || 0
                             let seconds = parseInt(arg.time.seconds) || 0
@@ -280,7 +280,16 @@ window.onload = () => {
                         this.currToTotal();
                         break;
                     case 'main-menu':
-                        app.showMenu = !app.showMenu;
+                        if(!app.showModal) {
+                            app.color = 'black';
+                            app.modalHeight = 100;
+                            app.modalWidth = 100;
+                            app.showModal = true;
+
+                            app.time = 'MENU';
+                        } else {
+                            app.showModal = false;
+                        }
                         break;
                     default:
                         console.log('Message from controller (unknown):', arg)

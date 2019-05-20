@@ -16,7 +16,7 @@
         <transition name="modal">
         <div class="modal-mask">
             <div class="modal-wrapper">
-            <div class="modal-container">
+            <div class="modal-container" v-bind:style="{ width: width + '%', height: height + '%' }">
     
                 <div class="modal-header">
                 <slot name="header">
@@ -39,34 +39,7 @@
         </div>
         </transition>
     </script>
-
-    <script type="text/x-template" id="menu-template">
-        <transition name="menu">
-        <div class="menu-mask">
-            <div class="menu-wrapper">
-            <div class="menu-container">
     
-                <div class="menu-header">
-                <slot name="header">
-                    
-                </slot>
-                </div>
-    
-                <div class="menu-body">
-                <slot name="body">
-                    MENU
-                </slot>
-                </div>
-    
-                <div class="menu-footer">
-                <slot name="footer">
-                </slot>
-                </div>
-            </div>
-            </div>
-        </div>
-        </transition>
-    </script>
     <div id="app" class="main-container" v-bind:class="animationPoint">
         <div v-bind:class="getClass('teams')">
             <div v-bind:class="getClass('team')" v-for="team in displayTeams">
@@ -82,9 +55,11 @@
                 </div>
             </div>
         </div>
-        <!-- <button id="show-modal" v-on:click="showModal = true">Show Modal</button> -->
-        <menu-view v-if="showMenu" @close="showMenu = false" />
-        <modal v-if="showModal" @close="showModal = false" :time="time" :color="color" />
+        <modal 
+            v-if="showModal" 
+            @close="showModal = false" 
+            :time="time" :color="color" 
+            :width="modalWidth" :height="modalHeight" />
     </div>
 </body>
 </html>
