@@ -79,6 +79,14 @@ window.onload = () => {
                 ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
             },
 
+            goToMainMenu: function() {
+                let data = {
+                    name: 'main-menu',  
+                }
+
+                ipcRenderer.send('send-data-from-controller-to-scoreboard', data);
+            },
+
             proceedFinals: function() {
                 console.log('Proceed Finals');
 
