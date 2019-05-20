@@ -10,17 +10,23 @@ window.onload = () => {
         props: ['time', 'color'],
         template: '#modal-template'
     })
+
+    Vue.component('menu-view', {
+        template: '#menu-template'
+    })
     
     const app = new Vue({
         el: '#app',
         data: {
             message: 'Hello Vue!',
             showModal: false,
+            showMenu: false,
             time: '00:00',
             interval: null,
             displayTeams: [],
             color: 'black',
             animationPoint: '',
+            menuStatus: false
         },
         methods: {            
             sendStartup: function(dbTeams) {
@@ -224,7 +230,13 @@ window.onload = () => {
                         let sorted = this.sortTeams(this.displayTeams, arg.order, true)
                         let finalist = sorted.slice(0,5);
 
+                        finalist.forEach((val, i) => {
+                            val.score = 0;
+                            val.total = 0;
+                        })
+
                         this.displayTeams = this.sortTeams(finalist, 'alphabetical');
+                        this.sendStartup(this.displayTeams)
                         break;
                     case 'timer-start':
                         if(!app.showModal) {
@@ -266,6 +278,9 @@ window.onload = () => {
                         break;
                     case 'add-to-total':
                         this.currToTotal();
+                        break;
+                    case 'main-menu':
+                        app.showMenu = !app.showMenu;
                         break;
                     default:
                         console.log('Message from controller (unknown):', arg)
