@@ -57,7 +57,8 @@
         <div class="bottom-button-container">
             <div class="sort-container">
                 <button class="btnSort" v-bind:class="{activateSort:activateSort[0]}" v-on:click="sortScoreboard('alphabetical'); sortActivate(0)">Alphabetical Order</button>
-                <button class="btnSort" v-bind:class="{activateSort:activateSort[1]}" v-on:click="sortScoreboard('ranking'); sortActivate(1)">Ranking Order</button>
+                <button class="btnSort" v-bind:class="{activateSort:activateSort[1]}" v-on:click="sortScoreboard('current'); sortActivate(1)">Current Score Ranking</button>
+                <button class="btnSort" v-bind:class="{activateSort:activateSort[2]}" v-on:click="sortScoreboard('total'); sortActivate(2)">Total Score Ranking</button>
             </div>
             <div class="timer-container">
                 <div class="timer-inputs-container">

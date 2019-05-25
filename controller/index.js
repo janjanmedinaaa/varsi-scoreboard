@@ -13,30 +13,30 @@ window.onload = () => {
             minutes: 0,
             seconds: 0,
             activateScore: [true,false,false,false],
-            activateSort: [true,false],
+            activateSort: [true,false,false],
             numberScore: 0,
             numberSort: 0,
             animationPoint: ''
         },
         methods: {
             pointActivate: function(numberScore){
-                if(numberScore == 0){
-                    this.activateScore = [true,false,false,false];
-                }else if(numberScore == 1){
-                    this.activateScore = [false, true, false, false];
-                }else if(numberScore == 2){
-                    this.activateScore = [false,false,true,false];
-                }else{
-                    this.activateScore = [false,false,false,true];
+                let tempArray = [];
+
+                for(var a = 0; a < this.activateScore.length; a++) {
+                    tempArray.push((a == numberScore) ? true : false)
                 }
+
+                this.activateScore = tempArray;
             },
 
             sortActivate: function(numberSort){
-                if(numberSort == 0){
-                    this.activateSort = [true,false];
-                }else if(numberSort == 1){
-                    this.activateSort = [false, true];
+                let tempArray = [];
+
+                for(var a = 0; a < this.activateSort.length; a++) {
+                    tempArray.push((a == numberSort) ? true : false)
                 }
+
+                this.activateSort = tempArray;
             },
 
             levelSelected: function(level) {
@@ -92,7 +92,7 @@ window.onload = () => {
 
                 let data = {
                     name: 'finals',
-                    order: 'ranking'
+                    order: 'total'
                 }
 
                 let options  = {

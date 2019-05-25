@@ -88,17 +88,18 @@ window.onload = () => {
                 return dbTeams
             },
 
-            sortTeams: function(teams, order = 'alphabetical', finals = false) {
+            sortTeams: function(teams, order = 'alphabetical') {
                 console.log('Sort Teams')
 
                 return teams.sort(function(a, b) {
-                    if(order == 'alphabetical')
-                        return a.shortcut.localeCompare(b.shortcut);
-                    
-                    if(finals)
-                        return b.total - a.total
-
-                    return b.score - a.score
+                    switch(order) {
+                        case 'alphabetical':
+                            return a.shortcut.localeCompare(b.shortcut);
+                        case 'current':
+                            return b.score - a.score
+                        case 'total':
+                            return b.total - a.total
+                    }
                 })
             },
 
@@ -225,7 +226,7 @@ window.onload = () => {
                     case 'finals': 
                         this.currToTotal();
 
-                        let sorted = this.sortTeams(this.displayTeams, arg.order, true)
+                        let sorted = this.sortTeams(this.displayTeams, arg.order)
                         let finalist = sorted.slice(0,5);
 
                         finalist.forEach((val, i) => {
