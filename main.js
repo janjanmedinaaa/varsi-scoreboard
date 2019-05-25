@@ -8,9 +8,8 @@ let controllerWindow
 
 function createWindow () {
     // Create the browser window.
-    scoreboardWindow = new BrowserWindow({width: 900, height: 700, fullscreen: true })
-    controllerWindow = new BrowserWindow({ width: 700, height: 600,
-    })
+    scoreboardWindow = new BrowserWindow({width: 900, height: 700})
+    controllerWindow = new BrowserWindow({ width: 700, height: 600})
 
     //Build Menu from template 
     const mainMenu = Menu.buildFromTemplate(menuTemplate);
@@ -25,7 +24,7 @@ function createWindow () {
     controllerWindow.loadFile('controller/index.html')
 
     // Open the DevTools.
-    scoreboardWindow.webContents.openDevTools()
+    // scoreboardWindow.webContents.openDevTools()
     // controllerWindow.webContents.openDevTools()
 
     ipcMain.on('send-data-from-controller-to-scoreboard', (event, arg) => {
