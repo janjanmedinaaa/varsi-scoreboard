@@ -25,6 +25,7 @@ window.onload = () => {
             menuStatus: false,
             modalWidth: 80,
             modalHeight: 60,
+            audio: null
         },
         methods: {            
             sendStartup: function(dbTeams) {
@@ -121,12 +122,13 @@ window.onload = () => {
 
                     if(minutes == 0 && seconds < -1){
                         clearInterval(app.interval);
+                        app.audio.pause();
                         app.showModal = false;
                     }
 
                     if(minutes == 0 && seconds == 9){
-                        var audio = new Audio('../assets/sounds/countdown.mp3');
-                        audio.play();           
+                        app.audio = new Audio('../assets/sounds/countdown.mp3');
+                        app.audio.play();          
                     }
                     
                         
@@ -255,18 +257,21 @@ window.onload = () => {
                             let seconds = parseInt(arg.time.seconds) || 0
 
                             console.log(app.showModal, minutes, seconds);
-                            app.timer(minutes, seconds);
+
+                            if(app.interval === null)
+                                app.timer(minutes, seconds);
                         }
 
                         break;
                     case 'timer-reset': 
-                        if(app.showModal) {
-                             clearInterval(app.interval);
-                             app.interval = null;
-                             app.showModal = false;
+                        // if(app.showModal) {
+                            clearInterval(app.interval);
+                            app.interval = null;
+                            app.showModal = false;
+                            app.audio.pause();
 
-                             app.timer(0, 0)
-                        }
+                            app.timer(0, 0)
+                        // }
 
                         break;
                     case 'scoreboard-reset': 

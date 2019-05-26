@@ -12,7 +12,7 @@ window.onload = () => {
             orderModel: 'alphabetical',
             minutes: 0,
             seconds: 0,
-            activateScore: [true,false,false,false],
+            activateScore: [true,false,false,false,false],
             activateSort: [true,false,false],
             numberScore: 0,
             numberSort: 0,
