@@ -22,10 +22,13 @@ window.onload = () => {
             displayTeams: [],
             color: 'black',
             animationPoint: '',
+            addMargin: false,
             menuStatus: false,
             modalWidth: 80,
             modalHeight: 60,
-            audio: null
+            audio: null,
+            heightSize: 95
+
         },
         methods: {            
             sendStartup: function(dbTeams) {
@@ -110,13 +113,26 @@ window.onload = () => {
                 minutes = data.minutes;
                 seconds = data.seconds;
 
-                app.interval = setInterval(function() {
+                setTimeout(function() {
                     if(minutes != 0 && seconds < 0) {
                         minutes -= 1; seconds = 59;
                     }
-                    if(seconds <= 10)
+
+                    if(seconds <= 5  && minutes == 0)
                         app.color = 'red'
-                                           
+
+                    app.time = app.twoDigitFormat(minutes) + ':' + app.twoDigitFormat(seconds)
+                    seconds -= 1;
+                }, 0)
+
+                app.interval = setInterval(function() {
+
+                    if(minutes != 0 && seconds < 0) {
+                        minutes -= 1; seconds = 59;
+                    }
+                    if(seconds <= 5 && minutes == 0)
+                        app.color = 'red'
+
                     app.time = app.twoDigitFormat(minutes) + ':' + app.twoDigitFormat(seconds)
                     seconds -= 1;
 
@@ -126,11 +142,10 @@ window.onload = () => {
                         app.showModal = false;
                     }
 
-                    if(minutes == 0 && seconds == 9){
+                    if(minutes == 0 && seconds == 4){
                         app.audio = new Audio('../assets/sounds/countdown.mp3');
                         app.audio.play();          
                     }
-                    
                         
                 }, 1000)
             },
@@ -238,6 +253,8 @@ window.onload = () => {
 
                         this.displayTeams = this.sortTeams(finalist, 'alphabetical');
                         this.sendStartup(this.displayTeams)
+                        this.heightSize = 80;
+
                         break;
                     case 'timer-start':
                         if(!app.showModal) {
@@ -258,7 +275,7 @@ window.onload = () => {
 
                             console.log(app.showModal, minutes, seconds);
 
-                            if(app.interval === null)
+                            // if(app.interval == null)
                                 app.timer(minutes, seconds);
                         }
 
@@ -280,6 +297,7 @@ window.onload = () => {
                         let dbTeams = this.sortTeams(store.get('teams'))
                         this.displayTeams = dbTeams
 
+                        this.heightSize = 95
                         this.sendStartup(dbTeams)
                         break;
                     case 'add-to-total':

@@ -50,7 +50,7 @@ const teams = [
     },
     {
         image: '../assets/colleges/music.png',
-        name: 'College of Music',
+        name: 'Conservatory of Music',
         shortcut: 'MUSIC',
         score: 0,
         total: 0
@@ -64,7 +64,7 @@ const teams = [
     },
     {
         image: '../assets/colleges/engg.png',
-        name: 'College of Engineering',
+        name: 'Faculty of Engineering',
         shortcut: 'ENGG',
         score: 0,
         total: 0
