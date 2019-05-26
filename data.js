@@ -35,13 +35,6 @@ const teams = [
         total: 0
     },
     {
-        image: '../assets/colleges/cthm.png',
-        name: 'College of Tourism and Hospitality',
-        shortcut: 'CTHM',
-        score: 0,
-        total: 0
-    },
-    {
         image: '../assets/colleges/ipea.png',
         name: 'Institute of Physical Education and Athletics',
         shortcut: 'IPEA',

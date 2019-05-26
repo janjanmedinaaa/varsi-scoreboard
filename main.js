@@ -8,7 +8,7 @@ let controllerWindow
 
 function createWindow () {
     // Create the browser window.
-    scoreboardWindow = new BrowserWindow({width: 900, height: 700})
+    scoreboardWindow = new BrowserWindow({width: 1200, height: 900})
     controllerWindow = new BrowserWindow({ width: 700, height: 600})
 
     //Build Menu from template 
@@ -17,7 +17,8 @@ function createWindow () {
     Menu.setApplicationMenu(mainMenu);
     
     // Hide Menu
-    scoreboardWindow.setMenu(null);
+    // scoreboardWindow.setMenu(null);
+    scoreboardWindow.setMenuBarVisibility(false)
 
     // and load the index.html of the app.
     scoreboardWindow.loadFile('scoreboard/index.html')
