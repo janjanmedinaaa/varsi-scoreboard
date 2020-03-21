@@ -53,8 +53,8 @@
     <div id="app" class="main-container" v-bind:class="animationPoint" v-bind:style="{height: heightSize + '%'}">
         <div v-bind:class="getClass('teams')">
             <div v-bind:class="getClass('team')" v-for="team in displayTeams">
-                <div class="score-container">
-                    <img v-bind:src="team.image" class="team-image" alt="varsitarian-logo">
+                <div class="score-container"> 
+                    <img v-bind:src="team.image" class="team-image">
                 </div>
                 <p v-bind:class="getClass('team-name')">{{ (displayTeams.length > 5) ? team.shortcut : team.name }}</p>
                 <div class="score-container">

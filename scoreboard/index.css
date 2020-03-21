@@ -15,11 +15,12 @@ body {
     background-size: 100% 100%;
     height: 100%;
     overflow: hidden;
+    font-family: Archeologicaps;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Archeologicaps;
 }
+
 .main-container {
     display: flex;
     width: 100%;
@@ -31,13 +32,6 @@ body {
     align-items: center; */
     margin: 0;
     padding: 0;
-}
-
-.varsitarian-logo {
-    width: 300px;
-    margin: 10px;
-    align-self: center;
-    /* background-color: aqua; */
 }
 
 .teams-container {
@@ -110,11 +104,11 @@ body {
 .score-container {
     flex: 1;
     display: flex;
-    /* background-color: cadetblue; */
     justify-content: center;
     align-items: center;
     font-weight: bold;
     font-size: 20px;
+    /* background-color: cadetblue; */
 }
 
 .button-controls {

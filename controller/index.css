@@ -19,7 +19,7 @@ body {
     background-image: url('../assets/bg.png');
     /* background-repeat: no-repeat;   */
     /* background-position: 0% 0%; */
-    /* background-size: cover; */
+    background-size: cover;
     height: 100%;
     overflow: hidden;
     font-family: Archeologicaps;
@@ -68,53 +68,46 @@ body {
 
 .top-controls {
     height: 60px;
-    transition: 0.3s;
 }
 
 .top-controls:hover {
+    transition: 0.3s;
     height: 68px;
 }
 
-.xv-left {
-    margin-left: -8px;
-    height: 26px;
-}
-
-.level-images {
-    height: 30px;
-    border-radius: 30px;
-}
 
 .top-button-container button {
     margin: 5px;
-    padding: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
     background: none;
     border-style: none;
     /* font-family: Archeologicaps; */
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    /* align-items: center; */
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .level-button {
     display: flex; 
     justify-content: center;
-    align-items: center;
-    opacity: 0.5;
-    background-color: black !important;
+    background-color: none;
     outline-style: none;
 }
 
-.level-button:hover{
-    opacity: 1;
+.point-controls{
+    height: 60px;
+    border-radius: 10%;
+    background-color: white;
 }
 
-.activate{
-    opacity: 1;
+.point-controls:hover {
+    background-color: black;
+    transition: 0.3s;
+}
+
+.activate {
     background-color: black !important;
+    border-radius: 10%;
 }
 
 .btnSort{
@@ -433,4 +426,13 @@ body {
     opacity: 1;
     transition: 0s;
     overflow: hidden;
+}
+
+.control-timer {
+    height: 35px;
+    padding-left: 5px;
+}
+
+.control-score {
+    height: 35px; 
 }
