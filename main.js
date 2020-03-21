@@ -25,8 +25,8 @@ function createWindow () {
     controllerWindow.loadFile('controller/index.html')
 
     // Open the DevTools.
-    // scoreboardWindow.webContents.openDevTools()
-    // controllerWindow.webContents.openDevTools()
+    scoreboardWindow.webContents.openDevTools()
+    controllerWindow.webContents.openDevTools()
 
     ipcMain.on('send-data-from-controller-to-scoreboard', (event, arg) => {
         // Request to update the label in the renderer process of the second window
@@ -54,7 +54,6 @@ function createWindow () {
 
 app.on('ready', createWindow)
 
-
 // Create Menu Template 
 const menuTemplate = [
     {
@@ -68,9 +67,8 @@ const menuTemplate = [
             { role: 'zoomin' },
             { role: 'zoomout' },
             { type: 'separator' },
-            { role: 'togglefullscreen' }
-        
-      ]
+            { role: 'togglefullscreen' } 
+        ]
     }
   ];
 
