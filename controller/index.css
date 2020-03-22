@@ -38,7 +38,13 @@ body {
 
 .larger-size {
     font-size: 2em;
+    font-weight: bolder;
 }
+
+.shadowOutline {
+    color: white;
+    text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+  }
 
 .top-button-container {
     padding: 20px;
@@ -98,6 +104,7 @@ body {
     height: 60px;
     border-radius: 10%;
     background-color: white;
+    opacity: 0.8;
 }
 
 .point-controls:hover {
@@ -108,10 +115,12 @@ body {
 .activate {
     background-color: black !important;
     border-radius: 10%;
+    opacity: 1;
 }
 
 .btnSort{
     outline-style: none;
+    opacity: 0.8;
 }
 
 .btnSort:hover{
@@ -122,6 +131,7 @@ body {
 .activateSort{
     background-color: black !important;
     color: white;
+    opacity: 1;
 }
 
 

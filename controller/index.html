@@ -4,24 +4,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="../js/vue.min.js"></script>
-    <script src="index.js" async></script>
+    <script src="index.js"></script>
     <link href="index.css" rel="stylesheet" />
     <title>Varsitarian Controller</title>
 </head>
 <body>
     <div id="app" class="main-container">
         <div class="top-button-container">
-            <button class="top-button-text" v-on:click="goToMainMenu()">
+            <button class="top-button-text" v-on:click="goToMainMenu(); backMenu = !backMenu">
                 <img src="../assets/button/backtomain.png" class="top-controls" >
-                <p class="large-size">Back to Main Screen</p>
+                <p class="large-size shadowOutline">{{ backMenu ? 'Back to Main Screen' : 'Back to Scoreboard'}}</p>
             </button>
             <button class="top-button-text" v-on:click="proceedFinals()">
                 <img src="../assets/button/finals.png" class="top-controls" >
-                <p class="large-size">Proceed to Finals</p>
+                <p class="large-size shadowOutline">Proceed to Finals</p>
             </button>
             <button class="top-button-text" v-on:click="addToTotalScore()">
                 <img src="../assets/finals.png" class="top-controls" >
-                <p class="large-size">Add to Total Score</p>
+                <p class="large-size shadowOutline">Add to Total Score</p>
             </button>
             <div>
                 <button v-on:click="changeIncrement(1, 5); pointActivate(0)" v-bind:style="levelSelected(0)" class="level-button">
@@ -60,15 +60,15 @@
             <div class="sort-container">
                 <button class="btnSort" v-bind:class="{activateSort:activateSort[0]}" v-on:click="sortScoreboard('alphabetical'); sortActivate(0)" style="height: 113.08px">
                     <img src="../assets/button/alpha.png" class="top-controls" style="margin-left: 18px">
-                    <p class="large-size" style="margin-right: 23px;">Alphabetical Order</p>
+                    <p class="large-size shadowOutline" style="margin-right: 23px;">Alphabetical Order</p>
                 </button>
                 <button class="btnSort" v-bind:class="{activateSort:activateSort[1]}" v-on:click="sortScoreboard('current'); sortActivate(1)">
                     <img src="../assets/button/score.png" class="top-controls" >
-                    <p class="large-size">Current Score Ranking</p>
+                    <p class="large-size shadowOutline">Current Score Ranking</p>
                 </button>
                 <button class="btnSort" v-bind:class="{activateSort:activateSort[2]}" v-on:click="sortScoreboard('total'); sortActivate(2)">
                     <img src="../assets/button/backtomain.png" class="top-controls" >
-                    <p class="large-size">Total Score Ranking</p>
+                    <p class="large-size shadowOutline">Total Score Ranking</p>
                 </button>
             </div>
             <div class="timer-container">

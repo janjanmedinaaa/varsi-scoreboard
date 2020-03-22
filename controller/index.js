@@ -16,7 +16,8 @@ window.onload = () => {
             activateSort: [true,false,false],
             numberScore: 0,
             numberSort: 0,
-            animationPoint: ''
+            animationPoint: '',
+            backMenu: true
         },
         methods: {
             pointActivate: function(numberScore){
