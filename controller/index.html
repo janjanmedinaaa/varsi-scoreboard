@@ -20,7 +20,7 @@
                 <p class="large-size shadowOutline">Proceed to Finals</p>
             </button>
             <button class="top-button-text" v-on:click="addToTotalScore()">
-                <img src="../assets/finals.png" class="top-controls" >
+                <img src="../assets/button/Add to Total Score.png" class="top-controls" >
                 <p class="large-size shadowOutline">Add to Total Score</p>
             </button>
             <div>
@@ -34,7 +34,7 @@
                     <img src="../assets/button/fifteen.png" class="point-controls"  v-bind:class="{activate:activateScore[2]}">
                 </button>
                 <button v-on:click="changeIncrement(4, 20); pointActivate(3)" v-bind:style="levelSelected(3)" class="level-button">
-                    <img src="../assets/button/ten.png" class="point-controls"  v-bind:class="{activate:activateScore[3]}">
+                    <img src="../assets/button/twenty.png" class="point-controls"  v-bind:class="{activate:activateScore[3]}">
                 </button>
                 <button v-on:click="changeIncrement(5, 1); pointActivate(4)" v-bind:style="levelSelected(4)" class="level-button">
                     <img src="../assets/button/one.png" class="point-controls" v-bind:class="{activate:activateScore[4]}">
@@ -58,18 +58,9 @@
         </div>
         <div class="bottom-button-container">
             <div class="sort-container">
-                <button class="btnSort" v-bind:class="{activateSort:activateSort[0]}" v-on:click="sortScoreboard('alphabetical'); sortActivate(0)" style="height: 113.08px">
-                    <img src="../assets/button/alpha.png" class="top-controls" style="margin-left: 18px">
-                    <p class="large-size shadowOutline" style="margin-right: 23px;">Alphabetical Order</p>
-                </button>
-                <button class="btnSort" v-bind:class="{activateSort:activateSort[1]}" v-on:click="sortScoreboard('current'); sortActivate(1)">
-                    <img src="../assets/button/score.png" class="top-controls" >
-                    <p class="large-size shadowOutline">Current Score Ranking</p>
-                </button>
-                <button class="btnSort" v-bind:class="{activateSort:activateSort[2]}" v-on:click="sortScoreboard('total'); sortActivate(2)">
-                    <img src="../assets/button/backtomain.png" class="top-controls" >
-                    <p class="large-size shadowOutline">Total Score Ranking</p>
-                </button>
+                <img src="../assets/button/Arrange Alphabetical.png"  class="bottom-controls" v-bind:class="{activateButtonSort:activateSort[0]}" v-on:click="sortScoreboard('alphabetical'); sortActivate(0)">
+                <img src="../assets/button/Arrange by Score.png"  class="bottom-controls" v-bind:class="{activateButtonSort:activateSort[1]}" v-on:click="sortScoreboard('current'); sortActivate(1)">
+                <img src="../assets/button/Arrange by Total Score.png" class="bottom-controls" v-bind:class="{activateButtonSort:activateSort[2]}" v-on:click="sortScoreboard('total'); sortActivate(2)">
             </div>
             <div class="timer-container">
                 <div class="timer-inputs-container">
@@ -81,7 +72,7 @@
                         <p class="text-style timer-button-text">RESET</p>
                     </button>
                 </div>
-                <div class="timer-inputs-container margin-top">
+                <div class="timer-inputs-container">
                     <button v-on:click="autoTimer(15)" class="auto-time-buttons">  
                         <p class="text-style">15</p>
                     </button>
