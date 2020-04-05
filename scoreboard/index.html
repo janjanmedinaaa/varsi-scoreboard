@@ -31,26 +31,16 @@
                 </slot>
                 </div>
             </div>
-            <div v-else class="modal-container2" v-bind:style="{ width: width + '%', height: height + '%' }">
-                    <div class="modal-header">
-                    <slot name="header">
-                    </slot>
-                    </div>
-                    <div class="modal-body" v-bind:style="{color: color}">
-                    <img src="../assets/colleges/PautakanLogo.gif" height="50%" weight="50%"> 
-                    </div>
-        
-                    <div class="modal-footer">
-                    <slot name="footer">
-                    </slot>
-                    </div>
-                </div>
+            <div v-else class="modal-container2" v-bind:style="{ width: width + '%', height: height + '%' }">  
+                <video autoplay muted loop id="myVideo">
+                    <source src="../assets/pautakan-main.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
         </transition>
     </script>
     
-    <div id="app" class="main-container" v-bind:class="animationPoint" v-bind:style="{height: heightSize + '%'}">
+     <div id="app" class="main-container" v-bind:class="animationPoint" v-bind:style="{height: heightSize + '%'}">
         <div v-bind:class="getClass('teams')">
             <div v-bind:class="getClass('team')" v-for="team in displayTeams">
                 <div class="score-container"> 
@@ -69,7 +59,11 @@
             v-if="showModal" 
             @close="showModal = false" 
             :time="time" :color="color" 
-            :width="modalWidth" :height="modalHeight" />
+            :width="modalWidth" :height="modalHeight" 
+        />
     </div>
+
+    
 </body>
 </html>
+
